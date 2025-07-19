@@ -3,7 +3,6 @@ networks:
     driver: bridge
     name: roboshop # incase not created not mention external
     external: true # as i created network already outside compose manually so it is true.
-
 services:
   mongodb:
     image: obulanaidu/mongodb:v1
