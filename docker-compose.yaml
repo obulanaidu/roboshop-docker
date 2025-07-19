@@ -2,7 +2,6 @@ networks:
   default:
     driver: bridge
     name: roboshop 
-    external: true
 services:
   mongodb:
     image: obulanaidu/mongodb:v1
