@@ -1,11 +1,18 @@
 networks:
   default:
     driver: bridge
-    name: roboshop 
+    name: roboshop # external=true if created manually docker network create roboshop
+volumes:
+  mongodb:
+  redis:
+  mysql:
+  rabbitmq: #equal to docker volume create rabbitmq
 services:
   mongodb:
     image: obulanaidu/mongodb:v1
     container_name: mongodb
+    volumes:
+    - mongodb:/data/db
   catalogue:
     image: obulanaidu/catalogue:v1
     container_name: catalogue
@@ -14,6 +21,8 @@ services:
   redis:
     image: redis:7.0
     container_name: redis
+    volumes:
+    - redis:/data
   user:
     image: obulanaidu/user:v1
     container_name: user
@@ -29,6 +38,8 @@ services:
   mysql:
     image: obulanaidu/mysql:v1
     container_name: mysql
+    volumes:
+    - mysql:/var/lib/mysql
   shipping:
     image: obulanaidu/shipping:v1
     container_name: shipping
@@ -41,6 +52,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
+    volumes:
+    - mysql:/var/lib/rabbitmq
   payment:
     image: obulanaidu/payment:v1
     container_name: payment
