@@ -24,6 +24,7 @@ services:
   cart:
     image: obulanaidu/cart:v1
     container_name: cart
+    depends_on:
     - redis
     - catalogue
   mysql:
@@ -32,6 +33,7 @@ services:
   shipping:
     image: obulanaidu/shipping:v1
     container_name: shipping
+    depends_on:
     - mysql
     - cart
   # rabbitmq:
