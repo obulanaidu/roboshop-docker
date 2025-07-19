@@ -36,13 +36,16 @@ services:
     depends_on:
     - mysql
     - cart
-  # rabbitmq:
-  #   image: rabbitmq:7.0
-  #   container_name: rabbitmq
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: roboshop
+      RABBITMQ_DEFAULT_PASS: roboshop123
   # payment:
   #   image: obulanaidu/payment:v1
   #   container_name: payment
-  #     - user
-  #     - cart
-  #     - rabbitmq
+  #   - user
+  #   - cart
+  #   - rabbitmq
   
